@@ -13,8 +13,8 @@ var add = function(db,collections,selector,fn){
   var collection = db.collection(collections);
   collection.insertMany([selector],function(err,result){
     try{
-        assert.equal(err,null)
-        }catch(e){
+    	assert.equal(err,null)
+		}catch(e){
       console.log(e);
       result = [];
     };
@@ -28,9 +28,9 @@ var deletes = function(db,collections,selector,fn){
   var collection = db.collection(collections);
   collection.deleteOne(selector,function(err,result){
     try{
-        assert.equal(err,null);
-        assert.notStrictEqual(0,result.result.n);
-        }catch(e){
+    	assert.equal(err,null);
+    	assert.notStrictEqual(0,result.result.n);
+		}catch(e){
       console.log(e);
       result.result = "";
     };
@@ -44,31 +44,58 @@ var find = function(db,collections,selector,fn){
   //collections="hashtable";
   var collection = db.collection(collections);
   
-    collection.find(selector).toArray(function(err,result){
-      //console.log(docs);
-      try{
-        assert.equal(err,null);
-      }catch(e){
-        console.log(e);
-        result = [];
-      }
-      
-      fn(result);
-      db.close();
-    });
+	collection.find(selector).toArray(function(err,result){
+	  //console.log(docs);
+	  try{
+	    assert.equal(err,null);
+	  }catch(e){
+	    console.log(e);
+	    result = [];
+	  }
+	  
+	  fn(result);
+	  db.close();
+	});
 
 }
 
+//page
+var page = function(db,collections,selector,fn){
+  
+  var collection = db.collection(collections);
+  var count = 0;
+  collection.count({},function(err1,count1){
+  	try{
+	    assert.equal(err1,null);
+	  }catch(e){
+	    console.log(e);
+	  }
+  	count = count1;
+  });
+	collection.find(selector[0],selector[1]).toArray(function(err,result){
+	  try{
+	    assert.equal(err,null);
+	  }catch(e){
+	    console.log(e);
+	    result = [];
+	  }
+	  
+	  fn(result,count); //回掉函数可接收两个参数，查询的数据 和 总数据条数
+	  db.close();
+	});
+	
+
+}
 
 //update
 var updates = function(db,collections,selector,fn){
   var collection = db.collection(collections);
   
   collection.updateOne(selector[0],selector[1],function(err,result){
-      try{
-        assert.equal(err,null);
-        assert.notStrictEqual(0,result.result.n);
-        }catch(e){
+  	try{
+    	assert.equal(err,null);
+    	assert.notStrictEqual(0,result.result.n);
+		}catch(e){
       console.log(e);
       result.result = "";
     };
@@ -79,7 +106,7 @@ var updates = function(db,collections,selector,fn){
 
 }
 var methodType = {
-    // 项目所需
+	// 项目所需
   login:find,
   //   type ---> 不放在服务器上面
   //  放入到服务器
@@ -92,7 +119,8 @@ var methodType = {
   updatePwd:updates,
   //portal部分
   showCourse:find,
-  register:add
+  register:add,
+  page:page
 };
 //主逻辑    服务器  ， 请求    --》 
 // req.route.path ==》 防止前端的请求 直接操作你的数据库
@@ -107,3 +135,4 @@ module.exports = function(req,res,collections,selector,fn){
   });
 
 };
+
