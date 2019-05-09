@@ -17,7 +17,8 @@ export default new Router({
       path: '/',
       name: 'Login',
       component: Login
-    },{
+		},
+		{
 	    path: '/backIndex', //首页框架
 	    name: 'backIndex',
 	    component: backIndex,
