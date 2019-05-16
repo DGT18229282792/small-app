@@ -25,7 +25,7 @@
 				<li class="now">
 					<router-link to="/backIndex/indexContent">
 						<i class="fa fa-home" aria-hidden="true"></i>
-						<span>网站首页</span>
+						<span>首页</span>
 					</router-link>
 				</li>
 				<li>
@@ -37,13 +37,19 @@
 				<li>
 					<router-link to="/backIndex/studentList">
 						<i class="fa fa-user-circle-o" aria-hidden="true"></i>
-						<span>学员管理</span>
+						<span>商品管理</span>
 					</router-link>
 				</li>
 				<li>
 					<router-link to="/backIndex/courseList">
 						<i class="fa fa-book" aria-hidden="true"></i>
-						<span>课程管理</span>
+						<span>购物车管理</span>
+					</router-link>
+				</li>
+						<li>
+					<router-link to="/backIndex/courseList">
+						<i class="fa fa-book" aria-hidden="true"></i>
+						<span>地址管理</span>
 					</router-link>
 				</li>
 			</ul>
@@ -134,7 +140,7 @@
 		left: 0;
 		top: 0;
 		bottom: 0;
-		background: #fff;
+		background: #001529;
 		z-index: 99;
 	}
 	.sidenav_box .logo{
@@ -149,7 +155,7 @@
 	}
 	.sidenav a{
 		display: block;
-		width: 56px;
+		width: 100%;
 		height: 56px;
 		margin: 0 auto;
 		position: relative;
@@ -166,7 +172,7 @@
 		color: #566a80;
 	}
 	.sidenav a:hover{
-		background: #f0f2f5;
+		/* background: #f0f2f5; */
 		opacity: 1;
 	}
 	.sidenav a span{
@@ -209,7 +215,7 @@
 	}
 	.sidenav .router-link-active{
 		opacity: 1;
-		background: #f0f2f5;
+		background: #1890ff;
 	}
 	
 	/*顶部栏*/
@@ -272,7 +278,7 @@
 		text-decoration: none;
 	}
 	.handler .more a:hover{
-		background: #f8f9fb;
+		/* background: #f8f9fb; */
 	}
 	.handler > img{
 		width: 50px;

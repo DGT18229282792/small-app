@@ -4,7 +4,7 @@ var assert = require('assert');
 var url = require('url');
 var host="localhost";
 var port="27017";
-var Urls = 'mongodb://localhost:27017/classweb';
+var Urls = 'mongodb://localhost:27017/dumall';
 // classweb  ===> 自动创建一个
 
 

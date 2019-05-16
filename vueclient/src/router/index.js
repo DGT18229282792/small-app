@@ -7,14 +7,14 @@ import indexContent from '@/components/indexContent'
 import adminList from '@/components/adminList'
 import studentList from '@/components/studentList'
 import courseEdit from '@/components/courseEdit'
-
-
+import goodslist from '@/components/goodsList'
 Vue.use(Router)
 
 export default new Router({
+	// mode:'history',
   routes: [
     {
-      path: '/',
+      path: '/login',
       name: 'Login',
       component: Login
 		},
@@ -43,6 +43,11 @@ export default new Router({
 			    redirect: 'indexContent'
 		    }
 	    ]
+		},
+		{
+			path:'/goodslist',
+			name:'goodslist',
+			component:goodslist
 		}
   ]
 })

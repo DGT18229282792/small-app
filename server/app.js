@@ -4,23 +4,18 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
-var index = require('./routes/index');
 var users = require('./routes/users');
-
+var goods = require('./routes/goods');
 var app = express();
 
-
-//跨域  后期删
+app.use('/goods', goods);
+// 跨域
 app.all('*', function(req, res, next) {
-	res.header("Access-Control-Allow-Origin", "http://localhost:8080"); //为了跨域保持session，所以指定地址，不能用*
-    res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
-    res.header('Access-Control-Allow-Credentials', true); 
-    next();
-});
-
+  res.header("Access-Control-Allow-Origin", "*");//项目上线后改成页面的地址
+  res.header("Access-Control-Allow-Headers", "X-Requested-With,Content-Type");
+  res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+  next();  
+  });
 //session
 var session=require('express-session');
 app.use(session({
@@ -61,8 +56,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-app.use('/', index);
 app.use('/users', users);
 
 // catch 404 and forward to error handler

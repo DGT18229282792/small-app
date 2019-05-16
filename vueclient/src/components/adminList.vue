@@ -65,7 +65,7 @@
 					//失败
 			    	console.log(error)
 				});
-			},
+			}, 
 			addAdmin(){ //添加用户
 				if(!this.Admin.name || !this.Admin.phone || !this.Admin.password){
 					alert("不能为空");
